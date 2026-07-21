@@ -46,9 +46,6 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
-    //int x = 0;
-    //int y = 0;
-    //SDL_Rect rectangle = {x, y, 200, 200};
     MapTop grid = MapTop(renderer, 2000, 1800, 200);
     Player player; 
     player.x = 1000;
@@ -72,7 +69,7 @@ int main(int argc, char* argv[]) {
         SDL_SetRenderDrawColor(renderer, COLOR_IDK.r, COLOR_IDK.g,
                 COLOR_IDK.b, COLOR_IDK.b);
 
-        SDL_RenderFillCircle(renderer, player.x, player.y, 100);
+        SDL_RenderFillCircle(renderer, player.x, player.y, 20);
 
         grid.drawGrid(COLOR_IDK);     
         grid.fillMap(map, COLOR_IDK); 

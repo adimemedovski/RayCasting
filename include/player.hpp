@@ -8,4 +8,12 @@ typedef struct {
     size_t fov; // in degrees.
 } Player;
 
+typedef struct {
+    double x;
+    double y;
+} Direction;
 
+typedef struct {
+    double x;
+    double y;
+} Camera;
