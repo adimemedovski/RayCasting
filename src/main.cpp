@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
     }
 
 
-    SDL_Color COLOR_IDK = {200, 100, 200, 250};
+    SDL_Color COLOR_IDK = {100, 100, 100, 0};
     
     if (window == nullptr) {
         std::cerr << "Window could not be created! SDL_Error: " << SDL_GetError() << "\n";
@@ -48,8 +48,8 @@ int main(int argc, char* argv[]) {
     
     MapTop grid = MapTop(renderer, 2000, 1800, 200);
     Player player; 
-    player.x = 1000;
-    player.y = 800;
+    player.x1 = 1000;
+    player.y1 = 800;
     player.fov = 45;
 
     bool running = true;
@@ -61,20 +61,25 @@ int main(int argc, char* argv[]) {
             }
         }
         
-        userInput(&event, player.x, player.y);
-
+        userInput(&event, player.x2, player.y2);
+        
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
         
         SDL_SetRenderDrawColor(renderer, COLOR_IDK.r, COLOR_IDK.g,
                 COLOR_IDK.b, COLOR_IDK.b);
 
-        SDL_RenderFillCircle(renderer, player.x, player.y, 20);
+
+        player.x1 = player.x2;
+        player.y1 = player.y2;
+        
+        drawDirectionVector(renderer, COLOR_IDK, player);
+        SDL_RenderFillCircle(renderer, player.x1, player.y1, 20);
 
         grid.drawGrid(COLOR_IDK);     
         grid.fillMap(map, COLOR_IDK); 
         SDL_RenderPresent(renderer);
-
+    
     }
 
     SDL_DestroyRenderer(renderer);

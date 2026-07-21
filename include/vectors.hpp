@@ -47,11 +47,15 @@ class Vector2D {
                 degrees += 1;
                 radians = toRadians(degrees);     
 
-                xComponent = x1 + (radius) * (std::cos(radians));
-                yComponent = y1 + (radius) * (std::sin(radians)); 
+                xComponent = x1 + (radius * std::cos(radians));
+                yComponent = y1 + (radius * std::sin(radians)); 
                 std::cerr << xComponent << "\n" << yComponent << "\n" << std::endl; 
                 drawVector(color, xComponent, yComponent);
 
             }
+        }
+
+        void drawDirectionVector(SDL_Color color) {
+
         }
 };
