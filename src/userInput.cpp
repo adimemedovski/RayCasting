@@ -23,3 +23,4 @@ void userInput(SDL_Event *event, double &x, double &y) {
             }
     }
 }
+
