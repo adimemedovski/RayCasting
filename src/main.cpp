@@ -5,8 +5,22 @@
 #include "mapTop.hpp"
 #include "userInput.hpp"
 #include "circle.hpp"
+#include "player.hpp"
 
+constexpr size_t columns = 10;
+constexpr size_t rows = 9;
 
+size_t map[rows][columns] = {
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+};
 
 int main(int argc, char* argv[]) {
 
@@ -36,7 +50,9 @@ int main(int argc, char* argv[]) {
     }
     
     MapTop grid = MapTop(renderer, 2000, 1800, 200);
-    //Player player = {0, 0, 45};
+    Player player; 
+    player.x = 1000;
+    player.y = 800;
 
     bool running = true;
     SDL_Event event;
@@ -47,7 +63,7 @@ int main(int argc, char* argv[]) {
             }
         }
         
-        //userInput(&event, x, y);
+        userInput(&event, player.x, player.y);
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
@@ -55,7 +71,7 @@ int main(int argc, char* argv[]) {
         SDL_SetRenderDrawColor(renderer, COLOR_IDK.r, COLOR_IDK.g,
                 COLOR_IDK.b, COLOR_IDK.b);
 
-        SDL_RenderFillCircle(renderer, 100, 100, 100);
+        SDL_RenderFillCircle(renderer, player.x, player.y, 100);
          
         grid.drawGrid(COLOR_IDK);     
         SDL_RenderPresent(renderer);
