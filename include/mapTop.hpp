@@ -2,6 +2,9 @@
 #include <iostream>
 #include <stddef.h>
 
+constexpr size_t rows = 9;
+constexpr size_t columns = 10;
+
 class MapTop {
     private:
         int windowWidth;
@@ -47,6 +50,27 @@ class MapTop {
              
             drawColumns(columns, color); 
             drawRows(rows, color); 
+        }
+
+        void fillMap(size_t map[rows][columns], SDL_Color color) {
+            int x = 0;
+            int y = 0;
+            
+            SDL_Rect rectangle = {x, y, squareLength, squareLength};
+            
+            for (size_t row = 0; row < rows; row++) {
+                rectangle.x = 0; 
+                
+                for (size_t column = 0; column < columns; column++) {
+                    if (map[row][column] == 1) {
+                        SDL_RenderFillRect(renderer, &rectangle);           
+                    }
+
+                    rectangle.x += squareLength;
+                }
+                
+                rectangle.y += squareLength;
+            } 
         }
 };
 

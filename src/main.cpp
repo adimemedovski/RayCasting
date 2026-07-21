@@ -7,13 +7,10 @@
 #include "circle.hpp"
 #include "player.hpp"
 
-constexpr size_t columns = 10;
-constexpr size_t rows = 9;
-
 size_t map[rows][columns] = {
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 1, 1, 0, 0, 0, 0, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -49,10 +46,14 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
+    //int x = 0;
+    //int y = 0;
+    //SDL_Rect rectangle = {x, y, 200, 200};
     MapTop grid = MapTop(renderer, 2000, 1800, 200);
     Player player; 
     player.x = 1000;
     player.y = 800;
+    player.fov = 45;
 
     bool running = true;
     SDL_Event event;
@@ -72,8 +73,9 @@ int main(int argc, char* argv[]) {
                 COLOR_IDK.b, COLOR_IDK.b);
 
         SDL_RenderFillCircle(renderer, player.x, player.y, 100);
-         
+
         grid.drawGrid(COLOR_IDK);     
+        grid.fillMap(map, COLOR_IDK); 
         SDL_RenderPresent(renderer);
 
     }
