@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include "vectors.hpp"
 #include "mapTop.hpp"
-
+#include "userInput.hpp"
 
 
 
@@ -38,6 +38,10 @@ int main(int argc, char* argv[]) {
     Vector2D<int> vectorOne = Vector2D<int>(renderer, 1000, 1000, 400, 400);
     MapTop grid = MapTop(renderer, 2000, 1800, 200);
 
+    double x = 0;
+    double y = 0;
+    
+
     bool running = true;
     SDL_Event event;
     while (running) {
@@ -46,9 +50,18 @@ int main(int argc, char* argv[]) {
                 running = false;
             }
         }
+        
+        userInput(&event, x, y);
 
+    
+        SDL_Rect rectangle = {x, y, 100, 100};
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
+        
+        SDL_SetRenderDrawColor(renderer, COLOR_IDK.r, COLOR_IDK.g,
+                COLOR_IDK.b, COLOR_IDK.b);
+
+        SDL_RenderDrawRect(renderer, &rectangle); 
         grid.drawGrid(COLOR_IDK);     
         SDL_RenderPresent(renderer);
 
