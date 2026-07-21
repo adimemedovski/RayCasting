@@ -51,6 +51,7 @@ int main(int argc, char* argv[]) {
     player.x1 = 1000;
     player.y1 = 800;
     player.fov = 45;
+    player.angle = 0;
 
     bool running = true;
     SDL_Event event;
@@ -61,7 +62,7 @@ int main(int argc, char* argv[]) {
             }
         }
         
-        userInput(&event, player.x2, player.y2);
+        userInput(&event, player.x2, player.y2, player.angle);
         
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);

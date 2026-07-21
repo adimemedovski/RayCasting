@@ -3,5 +3,5 @@
 
 constexpr double speed = 1;
 
-void userInput(SDL_Event *event, double &x, double &y);
+void userInput(SDL_Event *event, double &x, double &y, double &angle);
 
